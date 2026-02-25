@@ -19,7 +19,9 @@ export default function Home() {
               <br className="hidden sm:block" /> No doomscrolling, just the facts.
             </p>
             <div className="mt-8 flex justify-center">
-              <SubscribeForm />
+              <a href="https://forms.gle/qLVBLUJ5uHuBETB39" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-200">
+                Subscribe Free (via Google Forms)
+              </a>
             </div>
           </div>
         </section>
