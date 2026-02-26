@@ -4,11 +4,16 @@
 import { useState } from 'react';
 
 const CITIES = [
-  { id: 'englewood', label: 'Englewood, CO' },
-  { id: 'parker', label: 'Parker, CO' },
-  { id: 'austin', label: 'Austin, TX' },
-  { id: 'portland_me', label: 'Portland, ME' },
+  { id: 'Englewood', label: 'Englewood, CO' },
+  { id: 'Parker', label: 'Parker, CO' },
+  { id: 'Austin', label: 'Austin, TX' },
+  { id: 'Portland, ME', label: 'Portland, ME' },
 ];
+
+// Main Signup Form Configuration
+// Form ID: 1FAIpQLScXfR9-J-fJ-fJ-fJ-fJ-fJ-fJ-fJ (Example - Need real one)
+// Using a placeholder for now, user needs to provide the real "Subscribe" form details
+// Entry IDs needed: Email, City
 
 export default function SubscribeForm() {
   const [email, setEmail] = useState('');
@@ -19,11 +24,31 @@ export default function SubscribeForm() {
     e.preventDefault();
     setStatus('loading');
 
-    // Simulate API call for now (we'll implement the real one later)
-    setTimeout(() => {
-      setStatus('success');
-      setEmail('');
-    }, 1500);
+    // Google Form Configuration
+    // Form ID: 1FAIpQLScXk5fAHeMHA5dRJc37ukPAVWIJQET1YpjxS8nrJ_tPBAoXSQ
+    const GOOGLE_FORM_ACTION_URL = "https://docs.google.com/forms/d/e/1FAIpQLScXk5fAHeMHA5dRJc37ukPAVWIJQET1YpjxS8nrJ_tPBAoXSQ/formResponse";
+    const EMAIL_ENTRY_ID = "entry.2133701954";
+    const CITY_ENTRY_ID = "entry.328135518";
+
+    try {
+        const formData = new FormData();
+        formData.append(EMAIL_ENTRY_ID, email);
+        formData.append(CITY_ENTRY_ID, selectedCity);
+        
+        // Mode 'no-cors' is required for Google Forms to avoid CORS errors in browser
+        await fetch(GOOGLE_FORM_ACTION_URL, {
+            method: "POST",
+            body: formData,
+            mode: "no-cors"
+        });
+        
+        // Google Forms with no-cors doesn't return a readable status, so we assume success if no error thrown
+        setStatus('success');
+        setEmail('');
+    } catch (error) {
+        console.error('Subscribe error:', error);
+        setStatus('error');
+    }
   };
 
   return (

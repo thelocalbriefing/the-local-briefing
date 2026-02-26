@@ -1,4 +1,6 @@
 // app/components/Footer.tsx
+import Link from 'next/link';
+
 export default function Footer() {
   return (
     <footer className="bg-white border-t border-gray-100">
@@ -10,9 +12,15 @@ export default function Footer() {
           <p className="text-base text-gray-400">
             &copy; {new Date().getFullYear()} The Local Briefing. All rights reserved.
           </p>
-          <p className="text-xs text-gray-400 mt-2">
-            Built with ❤️ and AI in Englewood, CO.
-          </p>
+          <div className="flex justify-center sm:justify-start space-x-4 mt-2">
+            <p className="text-xs text-gray-400">
+              Built with ❤️ and AI in Englewood, CO.
+            </p>
+            <span className="text-gray-300">|</span>
+            <Link href="/unsubscribe" className="text-xs text-gray-400 hover:text-gray-600 transition-colors">
+              Unsubscribe
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
