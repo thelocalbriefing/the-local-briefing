@@ -18,6 +18,8 @@ export default function SubscribeForm() {
   const GOOGLE_FORM_ACTION_URL = "https://docs.google.com/forms/d/e/1FAIpQLScXk5fAHeMHA5dRJc37ukPAVWIJQET1YpjxS8nrJ_tPBAoXSQ/formResponse";
   const EMAIL_ENTRY_ID = "entry.2133701954";
   const CITY_ENTRY_ID = "entry.328135518";
+  const FIRST_NAME_ENTRY_ID = "entry.391375456";
+  const LAST_NAME_ENTRY_ID = "entry.79436958";
 
   // When form is submitted, we manually show "loading" then "success"
   // The actual form submission happens via the target="hidden_iframe"
@@ -57,6 +59,33 @@ export default function SubscribeForm() {
         </div>
 
         <div className="space-y-4">
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">
+                First Name <span className="text-gray-400 font-normal">(Optional)</span>
+              </label>
+              <input
+                type="text"
+                name={FIRST_NAME_ENTRY_ID}
+                id="firstName"
+                placeholder="Jane"
+                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 px-3 border"
+              />
+            </div>
+            <div>
+              <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1">
+                Last Name <span className="text-gray-400 font-normal">(Optional)</span>
+              </label>
+              <input
+                type="text"
+                name={LAST_NAME_ENTRY_ID}
+                id="lastName"
+                placeholder="Doe"
+                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 px-3 border"
+              />
+            </div>
+          </div>
+
           <div>
             <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-1">
               Select Your City
