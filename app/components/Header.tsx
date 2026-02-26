@@ -11,13 +11,13 @@ export default function Header() {
               The Local Briefing
             </Link>
           </div>
-          <nav className="flex space-x-8">
-            <Link href="/" className="text-gray-500 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+          <nav className="hidden md:flex space-x-8">
+            <Link href="#subscribe" className="text-gray-500 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors">
               Cities
             </Link>
-            <Link href="/archive" className="text-gray-500 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+            {/* <Link href="/archive" className="text-gray-500 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors">
               Archive
-            </Link>
+            </Link> */}
           </nav>
         </div>
       </div>

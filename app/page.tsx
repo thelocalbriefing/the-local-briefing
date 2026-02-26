@@ -18,7 +18,7 @@ export default function Home() {
               A 5-minute weekly email covering city council, construction projects, and events in your neighborhood.
               <br className="hidden sm:block" /> No doomscrolling, just the facts.
             </p>
-            <div className="mt-8 flex justify-center">
+            <div className="mt-8 flex justify-center" id="subscribe">
               <SubscribeForm />
             </div>
           </div>
