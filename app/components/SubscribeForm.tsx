@@ -4,56 +4,51 @@
 import { useState } from 'react';
 
 const CITIES = [
-  { id: 'Englewood', label: 'Englewood, CO' },
-  { id: 'Parker', label: 'Parker, CO' },
-  { id: 'Austin', label: 'Austin, TX' },
+  { id: 'Englewood, CO', label: 'Englewood, CO' },
+  { id: 'Parker, CO', label: 'Parker, CO' },
+  { id: 'Austin, TX', label: 'Austin, TX' },
   { id: 'Portland, ME', label: 'Portland, ME' },
 ];
-
-// Main Signup Form Configuration
-// Form ID: 1FAIpQLScXfR9-J-fJ-fJ-fJ-fJ-fJ-fJ-fJ (Example - Need real one)
-// Using a placeholder for now, user needs to provide the real "Subscribe" form details
-// Entry IDs needed: Email, City
 
 export default function SubscribeForm() {
   const [email, setEmail] = useState('');
   const [selectedCity, setSelectedCity] = useState(CITIES[0].id);
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const GOOGLE_FORM_ACTION_URL = "https://docs.google.com/forms/d/e/1FAIpQLScXk5fAHeMHA5dRJc37ukPAVWIJQET1YpjxS8nrJ_tPBAoXSQ/formResponse";
+  const EMAIL_ENTRY_ID = "entry.2133701954";
+  const CITY_ENTRY_ID = "entry.328135518";
+
+  // When form is submitted, we manually show "loading" then "success"
+  // The actual form submission happens via the target="hidden_iframe"
+  const handleSubmit = (e: React.FormEvent) => {
+    // We let the form submit naturally to the iframe
     setStatus('loading');
-
-    // Google Form Configuration
-    // Form ID: 1FAIpQLScXk5fAHeMHA5dRJc37ukPAVWIJQET1YpjxS8nrJ_tPBAoXSQ
-    const GOOGLE_FORM_ACTION_URL = "https://docs.google.com/forms/d/e/1FAIpQLScXk5fAHeMHA5dRJc37ukPAVWIJQET1YpjxS8nrJ_tPBAoXSQ/formResponse";
-    const EMAIL_ENTRY_ID = "entry.2133701954";
-    const CITY_ENTRY_ID = "entry.328135518";
-
-    try {
-        const formData = new FormData();
-        formData.append(EMAIL_ENTRY_ID, email);
-        formData.append(CITY_ENTRY_ID, selectedCity);
-        
-        // Mode 'no-cors' is required for Google Forms to avoid CORS errors in browser
-        await fetch(GOOGLE_FORM_ACTION_URL, {
-            method: "POST",
-            body: formData,
-            mode: "no-cors"
-        });
-        
-        // Google Forms with no-cors doesn't return a readable status, so we assume success if no error thrown
-        setStatus('success');
-        setEmail('');
-    } catch (error) {
-        console.error('Subscribe error:', error);
-        setStatus('error');
-    }
+    
+    // Simulate success after a short delay since we can't detect cross-origin iframe load
+    setTimeout(() => {
+      setStatus('success');
+      setEmail('');
+    }, 1500);
   };
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <form onSubmit={handleSubmit} className="bg-white shadow-xl rounded-2xl p-8 space-y-6 border border-gray-100">
+      {/* Hidden Iframe to catch the form submission */}
+      <iframe 
+        name="hidden_iframe" 
+        id="hidden_iframe" 
+        style={{display:'none'}}
+        title="Form Submission Target"
+      ></iframe>
+
+      <form 
+        action={GOOGLE_FORM_ACTION_URL} 
+        method="POST" 
+        target="hidden_iframe"
+        onSubmit={handleSubmit}
+        className="bg-white shadow-xl rounded-2xl p-8 space-y-6 border border-gray-100"
+      >
         <div className="space-y-2 text-center">
           <h3 className="text-xl font-semibold text-gray-900">Get the Weekly Update</h3>
           <p className="text-sm text-gray-500">
@@ -67,7 +62,7 @@ export default function SubscribeForm() {
               Select Your City
             </label>
             <select
-              id="city"
+              name={CITY_ENTRY_ID}
               value={selectedCity}
               onChange={(e) => setSelectedCity(e.target.value)}
               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2 px-3 border"
@@ -86,7 +81,7 @@ export default function SubscribeForm() {
             </label>
             <input
               type="email"
-              id="email"
+              name={EMAIL_ENTRY_ID}
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
