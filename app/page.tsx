@@ -28,7 +28,7 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-                Why "The Local Briefing"?
+                Why &quot;The Local Briefing&quot;?
               </h2>
               <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
                 Most local news is either paywalled, outdated, or full of ads. We fix that.
@@ -44,7 +44,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-lg font-medium text-gray-900 mb-2">Weekly & Concise</h3>
                 <p className="text-gray-500">
-                  Sent every Friday morning. We read the agenda packets so you don't have to.
+                  Sent every Friday morning. We read the agenda packets so you don&apos;t have to.
                 </p>
               </div>
 

@@ -24,7 +24,7 @@ export default function SubscribeForm() {
 
   // When form is submitted, we manually show "loading" then "success"
   // The actual form submission happens via the target="hidden_iframe"
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = () => {
     // We let the form submit naturally to the iframe
     setStatus('loading');
     

@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 
 import { useState } from 'react';
 import Header from '@/app/components/Header';
@@ -48,7 +49,7 @@ export default function UnsubscribePage() {
               Unsubscribe
             </h2>
             <p className="mt-2 text-sm text-gray-600">
-              We're sorry to see you go. Enter your email below to be removed from The Local Briefing.
+              We&apos;re sorry to see you go. Enter your email below to be removed from The Local Briefing.
             </p>
           </div>
 
@@ -67,9 +68,7 @@ export default function UnsubscribePage() {
                 </div>
               </div>
               <div className="mt-4 text-center">
-                <a href="/" className="text-sm font-medium text-green-600 hover:text-green-500">
-                  Return to Home
-                </a>
+                <Link href="/" className="text-sm font-medium text-green-600 hover:text-green-500">Return to Home</Link>
               </div>
             </div>
           ) : (
