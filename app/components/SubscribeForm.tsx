@@ -8,6 +8,7 @@ const CITIES = [
   { id: 'Parker, CO', label: 'Parker, CO' },
   { id: 'Austin, TX', label: 'Austin, TX' },
   { id: 'Portland, ME', label: 'Portland, ME' },
+  { id: 'Bozeman, MT', label: 'Bozeman, MT' },
 ];
 
 export default function SubscribeForm() {
